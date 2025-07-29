@@ -1,0 +1,99 @@
+{
+  "name": "dev-dailybox",
+  "displayName": "Dev DailyBox",
+  "description": "A daily tools for devs",
+  "publisher": "ifgiovanni",
+  "version": "0.0.2",
+  "icon": "src/assets/icon.png",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Formatters",
+    "Snippets",
+    "Other"
+  ],
+  "pricing": "Free",
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifgiovanni/dev-dailybox.git"
+  },
+  "keywords": [
+    "ulid",
+    "replace",
+    "ifgiovanni",
+    "vscode",
+    "extension"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ulid.generate",
+        "category": "Dev DailyBox",
+        "title": "Generate ULID"
+      },
+      {
+        "command": "ulid.replacePlaceholders",
+        "category": "Dev DailyBox",
+        "title": "Replace ULID Placeholders"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ulid.generate",
+        "key": "cmd+shift+u",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ulid.replacePlaceholders",
+        "key": "cmd+shift+r",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ulid.generate",
+          "key": "cmd+shift+u",
+          "when": "editorTextFocus",
+          "group": "dev-dailybox@1"
+        },
+        {
+          "command": "ulid.replacePlaceholders",
+          "when": "editorTextFocus",
+          "group": "dev-dailybox@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.54.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "ulid": "^3.0.1"
+  }
+}
